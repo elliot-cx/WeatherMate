@@ -3,7 +3,6 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android-extensions'
 }
-
 android {
     compileSdk 32
 
@@ -29,12 +28,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
-    }
-}
-
-allprojects {
-    repositories {
-        maven { url 'https://jitpack.io' }
     }
 }
 
