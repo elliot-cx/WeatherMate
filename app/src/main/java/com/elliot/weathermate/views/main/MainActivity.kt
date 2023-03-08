@@ -1,11 +1,12 @@
-package com.elliot.weathermate
+package com.elliot.weathermate.views.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.elliot.weathermate.R
 
-class SetupActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_setup)
+        setContentView(R.layout.activity_main)
     }
 }
