@@ -10,20 +10,27 @@ class Utils {
 
     companion object {
 
+        var units: String? = null
 
 
         // Fonction pour sauvegarder les données
-        fun saveConfig(data: Boolean, context: Context) {
-            val sharedPreferences = context.getSharedPreferences("setup", Context.MODE_PRIVATE)
+        fun saveConfig(context: Context) {
+            val sharedPreferences = context.getSharedPreferences("units", Context.MODE_PRIVATE)
             val editor = sharedPreferences.edit()
-            editor.putBoolean("setup", data)
+            editor.putString("units", units)
             editor.apply()
         }
 
         // Fonction pour charger les données
-        fun isConfigured(context: Context): Boolean {
+        fun initConfig(context: Context): Boolean {
             val sharedPreferences = context.getSharedPreferences("setup", Context.MODE_PRIVATE)
-            return sharedPreferences.getBoolean("setup", false)
+            units = sharedPreferences.getString("units",null)
+
+            if (units != null){
+                return true
+            }
+            return false
         }
+
     }
 }
