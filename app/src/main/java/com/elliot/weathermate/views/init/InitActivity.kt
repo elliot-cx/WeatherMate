@@ -7,5 +7,7 @@ class InitActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // On regarde si l'application a été correctement paramétrée
+
     }
 }

@@ -6,7 +6,11 @@ import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
 
 class Utils {
+
+
     companion object {
+
+
 
         // Fonction pour sauvegarder les données
         fun saveConfig(data: Boolean, context: Context) {
