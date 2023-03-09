@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WeatherMate</string>
+    <string name="search">Rechercher une ville</string>
+    <string name="settings">Paramètres</string>
 </resources>
