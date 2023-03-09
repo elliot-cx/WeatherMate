@@ -28,5 +28,31 @@ object WeatherAPIService {
         .build()
 
     // Création d'un objet ApiService
-    var weatherService = retrofit.create(WeatherAPI::class.java)
+    private val weatherService = retrofit.create(WeatherAPI::class.java)
+
+    // Obtenir la météo courante
+    fun getWeather(city: String,onResult: (WeatherData) -> Unit,onFail:(Throwable) ->Unit){
+        weatherService.getWeather(city)
+            .enqueue(object : Callback<WeatherData> {
+                override fun onResponse(call: Call<WeatherData>, response: Response<WeatherData>) {
+                    onResult(response.body()!!)
+                }
+                override fun onFailure(call: Call<WeatherData>, t: Throwable) {
+                    onFail(t)
+                }
+            })
+    }
+
+    // Obtenir la météo ocurante via des coordonnées GPS
+    fun getWeatherByCoords(lat: Float,lon: Float,onResult: (WeatherData) -> Unit,onFail:(Throwable) ->Unit){
+        weatherService.getWeather(lat,lon)
+            .enqueue(object : Callback<WeatherData> {
+                override fun onResponse(call: Call<WeatherData>, response: Response<WeatherData>) {
+                    onResult(response.body()!!)
+                }
+                override fun onFailure(call: Call<WeatherData>, t: Throwable) {
+                    onFail(t)
+                }
+            })
+    }
 }

@@ -9,9 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.elliot.weathermate.BuildConfig
 import com.elliot.weathermate.R
+import com.elliot.weathermate.Utils
 import com.elliot.weathermate.data.WeatherData
+import kotlin.math.roundToInt
 
-class WeatherAdapter(var weatherList: MutableList<WeatherData>) : RecyclerView.Adapter<WeatherAdapter.ViewHolder>() {
+class WeatherAdapter() : RecyclerView.Adapter<WeatherAdapter.ViewHolder>() {
 
     lateinit var mClickListener:ItemClickListener
     lateinit var context: Context
@@ -25,14 +27,14 @@ class WeatherAdapter(var weatherList: MutableList<WeatherData>) : RecyclerView.A
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val weatherData: WeatherData = weatherList[position]
+        val weatherData: WeatherData = Utils.weathers[position]
 
         holder.city.text = weatherData.name
 
         val weather = weatherData.weather[0]
 
         holder.weather.text = weather.description
-        holder.temperature.text = "${weatherData.weatherInfo.temp}°"
+        holder.temperature.text = "${weatherData.weatherInfo.temp.roundToInt()}°c"
 
         holder.animation.setAnimation(
             context.resources.getIdentifier(
@@ -44,7 +46,7 @@ class WeatherAdapter(var weatherList: MutableList<WeatherData>) : RecyclerView.A
     }
 
     override fun getItemCount(): Int {
-        return weatherList.size
+        return Utils.weathers.size
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener{
@@ -55,6 +57,7 @@ class WeatherAdapter(var weatherList: MutableList<WeatherData>) : RecyclerView.A
         val animation: LottieAnimationView
 
         init {
+            itemView.setOnClickListener(this)
             city = itemView.findViewById(R.id.city)
             weather = itemView.findViewById(R.id.weather)
             temperature = itemView.findViewById(R.id.temperature)
@@ -65,13 +68,10 @@ class WeatherAdapter(var weatherList: MutableList<WeatherData>) : RecyclerView.A
         }
     }
 
-    fun getItem(id: Int): WeatherData {
-        return weatherList[id]
-    }
-
     fun setClickListener(itemClickListener: ItemClickListener?) {
         mClickListener = itemClickListener!!
     }
+
 
     // implémentation pour supporter le click
     interface ItemClickListener {

@@ -1,9 +1,7 @@
 package com.elliot.weathermate
 
 import android.content.Context
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
-import java.lang.reflect.Type
+import com.elliot.weathermate.data.WeatherData
 
 class Utils {
 
@@ -11,6 +9,7 @@ class Utils {
     companion object {
 
         var units: String? = null
+        var weathers: MutableList<WeatherData> = mutableListOf()
 
 
         // Fonction pour sauvegarder les données
@@ -30,6 +29,10 @@ class Utils {
                 return true
             }
             return false
+        }
+
+        fun initLocations(context: Context){
+
         }
 
     }
