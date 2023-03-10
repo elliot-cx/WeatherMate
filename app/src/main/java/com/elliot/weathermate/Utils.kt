@@ -1,6 +1,7 @@
 package com.elliot.weathermate
 
 import android.content.Context
+import android.graphics.Color
 import com.elliot.weathermate.data.WeatherData
 
 class Utils {
@@ -34,6 +35,32 @@ class Utils {
         fun initLocations(context: Context){
 
         }
+
+        fun choseWeatherBackground(weather: String): IntArray {
+            when(weather){
+                "rain" -> return intArrayOf(
+                    Color.rgb(102, 124, 144),
+                    Color.rgb(67, 88, 116))
+                "clear" -> return intArrayOf(
+                    Color.rgb(33, 212, 253),
+                    Color.rgb(183, 33, 255))
+                "snow" -> return intArrayOf(
+                    Color.rgb(105, 179, 250),
+                    Color.rgb(52, 124, 227))
+                "clouds" -> return intArrayOf(
+                    Color.rgb(102, 124, 144),
+                    Color.rgb(67, 88, 116))
+                else -> return intArrayOf(
+                    Color.rgb(102, 124, 144),
+                    Color.rgb(67, 88, 116))
+            }
+        }
+
+        // Dégradé du dessous : JAUNE -> ROSE
+
+        //"clear" -> return intArrayOf(
+        //Color.rgb(251, 218, 97),
+        //Color.rgb(255, 90, 205))
 
     }
 }

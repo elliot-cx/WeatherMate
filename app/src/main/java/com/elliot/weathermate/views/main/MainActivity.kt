@@ -2,6 +2,7 @@ package com.elliot.weathermate.views.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,8 +40,10 @@ class MainActivity : AppCompatActivity(), WeatherAdapter.ItemClickListener {
         }
     }
 
+    // Gère les clicks effectués sur les weather cards
     override fun onItemClick(view: View?, position: Int) {
         val item = Utils.weathers[position]
+        Log.i("Test",item.toString())
         WeatherAPIService.getWeather(
             item.name,
             {

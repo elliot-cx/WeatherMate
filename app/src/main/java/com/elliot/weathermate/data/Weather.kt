@@ -1,6 +1,7 @@
 package com.elliot.weathermate.data
 
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 data class WeatherData(
     val weather: List<Weather>,
@@ -8,13 +9,16 @@ data class WeatherData(
     val weatherInfo: WeatherInfo,
     val wind: Wind,
     val clouds: Clouds,
+    val dt: Long,
     val name: String
 ){
     override fun toString(): String {
         return """
+            Nom : ${this.name}
             Météo : ${this.weatherInfo}
             Vents : ${this.wind}
             Nuages : ${this.clouds.all}
+            Date : ${Date((this.dt + 3600) * 1000)}
         """.trimIndent()
     }
 }
@@ -57,7 +61,7 @@ data class Wind(
 
 data class Weather(
     val id: Int,
-    val main: String,
+    var main: String,
     val description: String,
     val icon: String
 )

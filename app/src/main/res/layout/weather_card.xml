@@ -6,12 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="150dp"
     android:layout_marginBottom="10dp"
-    app:cardBackgroundColor="@color/purple_200"
-    app:cardCornerRadius="20dp">
+    app:cardBackgroundColor="@color/purple_500"
+    app:cardCornerRadius="30dp">
     <LinearLayout
+        android:id="@+id/card_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@drawable/gradient_background">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -57,6 +59,5 @@
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/clear800"/>
-
     </LinearLayout>
 </androidx.cardview.widget.CardView>

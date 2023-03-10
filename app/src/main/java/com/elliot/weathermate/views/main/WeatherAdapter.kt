@@ -1,9 +1,11 @@
 package com.elliot.weathermate.views.main
 
 import android.content.Context
+import android.graphics.drawable.GradientDrawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
@@ -36,13 +38,32 @@ class WeatherAdapter() : RecyclerView.Adapter<WeatherAdapter.ViewHolder>() {
         holder.weather.text = weather.description
         holder.temperature.text = "${weatherData.weatherInfo.temp.roundToInt()}°c"
 
-        holder.animation.setAnimation(
-            context.resources.getIdentifier(
-                "${weather.main.lowercase()}${weather.id}", "raw",
-                BuildConfig.APPLICATION_ID
-            )
-        )
-        holder.animation.playAnimation()
+
+        val weatherName = weather.main.lowercase()
+
+        // Mise en place de l'animation en fonction du temps
+        var res = context.resources.getIdentifier(
+            "${weatherName}${weather.id}", "raw",
+            BuildConfig.APPLICATION_ID)
+
+        // si la ressource n'est pas trouvée
+        if (res == 0){
+            res = context.resources.getIdentifier(
+                weatherName, "raw",
+                BuildConfig.APPLICATION_ID)
+        }
+
+        holder.animation.let {
+            it.setAnimation(res)
+            it.playAnimation()
+        }
+
+        // Mise en place du background en fonction du temps
+        val backgroundDrawable = holder.card.background as GradientDrawable
+        backgroundDrawable.run {
+            mutate()
+            colors = Utils.choseWeatherBackground(weatherName)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -51,6 +72,7 @@ class WeatherAdapter() : RecyclerView.Adapter<WeatherAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener{
 
+        val card: LinearLayout
         val city: TextView
         val weather: TextView
         val temperature: TextView
@@ -58,6 +80,7 @@ class WeatherAdapter() : RecyclerView.Adapter<WeatherAdapter.ViewHolder>() {
 
         init {
             itemView.setOnClickListener(this)
+            card = itemView.findViewById(R.id.card_background)
             city = itemView.findViewById(R.id.city)
             weather = itemView.findViewById(R.id.weather)
             temperature = itemView.findViewById(R.id.temperature)
@@ -74,6 +97,7 @@ class WeatherAdapter() : RecyclerView.Adapter<WeatherAdapter.ViewHolder>() {
 
 
     // implémentation pour supporter le click
+    // Non finale !
     interface ItemClickListener {
         fun onItemClick(view: View?, position: Int)
     }

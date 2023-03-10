@@ -14,6 +14,7 @@ class InitActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         startActivity(Intent(this,MainActivity::class.java))
+        //startActivity(Intent(this,SetupActivity::class.java))
         // On regarde si l'application a été correctement paramétrée
 
         return
