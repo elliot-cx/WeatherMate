@@ -1,16 +1,22 @@
 package com.elliot.weathermate.data
 
+import android.view.View
+import com.elliot.weathermate.data.WeatherAPIService.getWeather
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.annotations.SerializedName
 import java.util.*
 
+// Data classe regroupant toutes les informations Météorologique
 data class WeatherData(
-    val weather: List<Weather>,
+    var weather: List<Weather>,
     @SerializedName("main")
-    val weatherInfo: WeatherInfo,
-    val wind: Wind,
-    val clouds: Clouds,
-    val dt: Long,
-    val name: String
+    var weatherInfo: WeatherInfo,
+    var wind: Wind,
+    var clouds: Clouds,
+    var dt: Long,
+    var name: String,
+    val coord: Coord,
+    val isGPS: Boolean = false
 ){
     override fun toString(): String {
         return """
@@ -19,7 +25,20 @@ data class WeatherData(
             Vents : ${this.wind}
             Nuages : ${this.clouds.all}
             Date : ${Date((this.dt + 3600) * 1000)}
+            Location : ${this.coord}
+            GPS : ${this.isGPS}
         """.trimIndent()
+    }
+
+    fun update(view: View) {
+        getWeather(name,{
+            this.weather = it.weather
+            this.weatherInfo = it.weatherInfo
+            this.wind = it.wind
+            this.clouds = it.clouds
+            this.dt = it.dt
+            this.name = it.name
+        },{ Snackbar.make(view,"Erreur de connexion", Snackbar.LENGTH_LONG).show()})
     }
 }
 
@@ -61,9 +80,21 @@ data class Wind(
 
 data class Weather(
     val id: Int,
-    var main: String,
+    val main: String,
     val description: String,
     val icon: String
 )
+
+data class Coord(
+    val lon: Float,
+    val lat: Float
+){
+    override fun toString(): String {
+        return """
+            lon : ${this.lon}
+            lat : ${this.lat}
+        """.trimIndent()
+    }
+}
 
 

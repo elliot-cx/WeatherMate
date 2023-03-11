@@ -12,11 +12,11 @@ interface GeocodingAPI {
 
     // Rechercher une ville
     @GET("direct?appid=6a9643e3d9186f5638171fa46fa26bb8&limit=5")
-    fun getGeocodes(@Query("q")city: String): Call<List<Geocode>>
+    fun getGeocodes(@Query("q")city: String): Call<MutableList<Geocode>>
 
     // Rechercher une ville par coordonnées
     @GET("reverse?appid=6a9643e3d9186f5638171fa46fa26bb8")
-    fun getGeocode(@Query("lat")latitude: Float, @Query("lon")lon: Float): Call<WeatherData>
+    fun getGeocode(@Query("lat")latitude: Float, @Query("lon")lon: Float): Call<Geocode>
 
 }
 
@@ -29,13 +29,13 @@ object GeocodingAPIService {
     // Création d'un objet ApiService
     private val geoService: GeocodingAPI = retrofit.create(GeocodingAPI::class.java)
 
-    fun getGeocodes(query: String,onResult: (List<Geocode>) -> Unit,onFail:(Throwable) ->Unit){
+    fun getGeocodes(query: String,onResult: (MutableList<Geocode>) -> Unit,onFail:(Throwable) ->Unit){
         geoService.getGeocodes(query)
-            .enqueue(object : Callback<List<Geocode>> {
-                override fun onResponse(call: Call<List<Geocode>>, response: Response<List<Geocode>>) {
+            .enqueue(object : Callback<MutableList<Geocode>> {
+                override fun onResponse(call: Call<MutableList<Geocode>>, response: Response<MutableList<Geocode>>) {
                     onResult(response.body()!!)
                 }
-                override fun onFailure(call: Call<List<Geocode>>, t: Throwable) {
+                override fun onFailure(call: Call<MutableList<Geocode>>, t: Throwable) {
                     onFail(t)
                 }
             })

@@ -16,7 +16,7 @@ class InitActivity : AppCompatActivity() {
         startActivity(Intent(this,MainActivity::class.java))
         //startActivity(Intent(this,SetupActivity::class.java))
         // On regarde si l'application a été correctement paramétrée
-
+        this.finish()
         return
         if(Utils.initConfig(applicationContext)){
             startActivity(Intent(this,MainActivity::class.java))

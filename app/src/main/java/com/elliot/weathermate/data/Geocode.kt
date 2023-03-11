@@ -8,6 +8,6 @@ data class Geocode(
     val state: String
 ){
     override fun toString(): String {
-        return "${this.name},${this.country}"
+        return "${this.name},${this.state},${this.country}"
     }
 }
