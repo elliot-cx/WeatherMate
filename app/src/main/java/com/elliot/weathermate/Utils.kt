@@ -3,6 +3,9 @@ package com.elliot.weathermate
 import android.content.Context
 import android.graphics.Color
 import com.elliot.weathermate.data.WeatherData
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import java.lang.reflect.Type
 
 class Utils {
 
@@ -34,6 +37,25 @@ class Utils {
 
         fun initLocations(context: Context){
 
+        }
+
+        fun saveLocations(context: Context){
+            val sharedPreferences = context.getSharedPreferences("weathers", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.putString("weathers", Gson().toJson(weathers))
+            editor.apply()
+        }
+
+        fun loadLocations(context: Context): MutableList<WeatherData>{
+            val sharedPreferences = context.getSharedPreferences("weathers", Context.MODE_PRIVATE)
+            val gson = Gson()
+            val json = sharedPreferences.getString("weathers", null)
+            val listType: Type = object : TypeToken<MutableList<WeatherData>>() {}.type
+            return if (json == null){
+                mutableListOf()
+            }else{
+                gson.fromJson(json, listType)
+            }
         }
 
         fun choseWeatherBackground(weather: String): IntArray {

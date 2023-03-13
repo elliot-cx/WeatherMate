@@ -1,12 +1,15 @@
 package com.elliot.weathermate.data
 
+import android.os.Parcelable
 import android.view.View
 import com.elliot.weathermate.data.WeatherAPIService.getWeather
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 import java.util.*
 
 // Data classe regroupant toutes les informations Météorologique
+@Parcelize
 data class WeatherData(
     var weather: List<Weather>,
     @SerializedName("main")
@@ -17,7 +20,7 @@ data class WeatherData(
     var name: String,
     val coord: Coord,
     val isGPS: Boolean = false
-){
+) : Parcelable {
     override fun toString(): String {
         return """
             Nom : ${this.name}
@@ -42,6 +45,7 @@ data class WeatherData(
     }
 }
 
+@Parcelize
 data class WeatherInfo(
     val temp: Float,
     val feels_like: Float,
@@ -49,7 +53,7 @@ data class WeatherInfo(
     val temp_max: Float,
     val pressure: Int,
     val humidity: Int,
-){
+) : Parcelable{
     override fun toString(): String {
         return """
             Température: ${this.temp}°
@@ -62,14 +66,16 @@ data class WeatherInfo(
     }
 }
 
+@Parcelize
 data class Clouds(
     val all: Int
-)
+) : Parcelable
 
+@Parcelize
 data class Wind(
     val speed: Float,
     val deg: Float
-){
+) : Parcelable{
     override fun toString(): String {
         return """
             Vitesse : ${this.speed} m/s
@@ -78,17 +84,19 @@ data class Wind(
     }
 }
 
+@Parcelize
 data class Weather(
     val id: Int,
     val main: String,
     val description: String,
     val icon: String
-)
+) : Parcelable
 
+@Parcelize
 data class Coord(
     val lon: Float,
     val lat: Float
-){
+) : Parcelable {
     override fun toString(): String {
         return """
             lon : ${this.lon}

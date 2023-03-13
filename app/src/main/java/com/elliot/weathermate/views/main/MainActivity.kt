@@ -1,5 +1,6 @@
 package com.elliot.weathermate.views.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -15,6 +16,7 @@ import com.elliot.weathermate.Utils
 import com.elliot.weathermate.data.Geocode
 import com.elliot.weathermate.data.GeocodingAPIService
 import com.elliot.weathermate.data.WeatherAPIService
+import com.elliot.weathermate.views.detail.DetailActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), WeatherAdapter.ItemClickListener {
@@ -75,7 +77,13 @@ class MainActivity : AppCompatActivity(), WeatherAdapter.ItemClickListener {
         }
 
         editTextSearchCity.setOnItemClickListener { _, _, position, _ ->
-            Log.i("TEST", autoAdapter.getItem(position).toString() )
+            val geocode = autoAdapter.getItem(position)
+            WeatherAPIService.getWeather(geocode!!.name,{
+                editTextSearchCity.text.clear()
+                val intent = Intent(this,DetailActivity::class.java)
+                intent.putExtra("weather",it)
+                startActivity(intent)
+            },{})
         }
 
     }
@@ -87,7 +95,7 @@ class MainActivity : AppCompatActivity(), WeatherAdapter.ItemClickListener {
     // Gère les clicks effectués sur les weather cards
     override fun onItemClick(view: View?, position: Int) {
         val item = Utils.weathers[position]
-        Log.i("Test",item.toString())
+        Log.i("Test",Utils.weathers.contains(item).toString())
 
         item.update(layout)
         adapter.notifyItemChanged(position)
