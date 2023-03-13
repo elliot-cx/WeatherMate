@@ -2,23 +2,58 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textAnswer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Yooooooooooo"
-        tools:layout_editor_absoluteX="195dp"
-        tools:layout_editor_absoluteY="273dp"
-        tools:ignore="MissingConstraints" />
+        android:text="Quelles unités de mesure préférez vous ?"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/radioGroup"
+        android:layout_marginTop="50dp"/>
+
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Button"
-        tools:layout_editor_absoluteX="134dp"
-        tools:layout_editor_absoluteY="169dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radioGroup"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/buttonNext"
+        app:layout_constraintTop_toBottomOf="@id/textAnswer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <RadioButton
+            android:id="@+id/metricsButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Celsius/kmh"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/imperialButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fahrenheit/Mph"/>
+
+    </RadioGroup>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

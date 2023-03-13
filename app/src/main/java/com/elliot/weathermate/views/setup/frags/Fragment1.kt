@@ -19,7 +19,7 @@ class Fragment1 : Fragment()  {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        button.setOnClickListener {
+        buttonNext.setOnClickListener {
             view.findNavController().navigate(R.id.fragment1to2)
             activity?.findViewById<Stepper>(R.id.stepper)?.forward()
         }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.elliot.weathermate.R
+import com.elliot.weathermate.Utils
 import com.tayfuncesur.stepper.Stepper
 import kotlinx.android.synthetic.main.fragment2.*
 
@@ -22,7 +23,13 @@ class Fragment2 : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        button2.setOnClickListener {
+        buttonNext.setOnClickListener {
+            if(metricsButton.isSelected){
+                Utils.units = "metrics"
+            }
+            else{
+                Utils.units = "imperial"
+            }
             view.findNavController().navigate(R.id.fragment2to3)
             activity?.findViewById<Stepper>(R.id.stepper)?.forward()
         }
