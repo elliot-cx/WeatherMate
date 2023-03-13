@@ -90,15 +90,17 @@ class MainActivity : AppCompatActivity(), WeatherAdapter.ItemClickListener {
 
     override fun onResume() {
         super.onResume()
+        this.adapter.notifyDataSetChanged()
     }
 
     // Gère les clicks effectués sur les weather cards
     override fun onItemClick(view: View?, position: Int) {
         val item = Utils.weathers[position]
-        Log.i("Test",Utils.weathers.contains(item).toString())
 
-        item.update(layout)
-        adapter.notifyItemChanged(position)
+        val intent = Intent(this,DetailActivity::class.java)
+        intent.putExtra("weather",item)
+        startActivity(intent)
+
 
         //WeatherAPIService.getWeather(
         //    item.name,
