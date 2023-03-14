@@ -19,25 +19,27 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:padding="15dp"
+            android:paddingStart="15dp"
+            android:paddingTop="15dp"
+            android:paddingEnd="0dp"
             android:orientation="vertical">
 
             <TextView
-                android:textStyle="bold"
                 android:id="@+id/city"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
+                android:text="Paris"
                 android:textColor="@color/white"
                 android:textSize="24sp"
-                android:text="Paris" />
+                android:textStyle="bold" />
 
             <TextView
-                android:textFontWeight="100"
                 android:id="@+id/weather"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Ciel dégagé"
                 android:textColor="@color/white"
-                android:text="Ciel dégagé" />
+                android:textFontWeight="100" />
 
             <TextView
                 android:id="@+id/temperature"
@@ -45,8 +47,8 @@
                 android:layout_height="52dp"
                 android:text="25°"
                 android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="48sp" />
+                android:textSize="48sp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 

@@ -26,7 +26,7 @@ class Utils {
 
         // Fonction pour charger les données
         fun initConfig(context: Context): Boolean {
-            val sharedPreferences = context.getSharedPreferences("setup", Context.MODE_PRIVATE)
+            val sharedPreferences = context.getSharedPreferences("units", Context.MODE_PRIVATE)
             units = sharedPreferences.getString("units",null)
 
             if (units != null){

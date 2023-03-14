@@ -1,9 +1,6 @@
 package com.elliot.weathermate.data
 
 import android.os.Parcelable
-import android.view.View
-import com.elliot.weathermate.data.WeatherAPIService.getWeather
-import com.google.android.material.snackbar.Snackbar
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 import java.util.*
@@ -31,17 +28,6 @@ data class WeatherData(
             Location : ${this.coord}
             GPS : ${this.isGPS}
         """.trimIndent()
-    }
-
-    fun update(view: View) {
-        getWeather(name,{
-            this.weather = it.weather
-            this.weatherInfo = it.weatherInfo
-            this.wind = it.wind
-            this.clouds = it.clouds
-            this.dt = it.dt
-            this.name = it.name
-        },{ Snackbar.make(view,"Erreur de connexion", Snackbar.LENGTH_LONG).show()})
     }
 }
 
