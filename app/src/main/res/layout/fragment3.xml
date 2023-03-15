@@ -8,14 +8,14 @@
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:textAlignment="center"
         android:layout_height="wrap_content"
         android:text="Nous avons besoin de la localisation du téléphone pour pouvoir continuer"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/animation"
         app:layout_constraintBottom_toTopOf="@id/authoriseButton"
         tools:ignore="MissingConstraints" />
 
@@ -24,8 +24,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="AUTORISE !!!!"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="100dp"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation"
+        android:layout_width="230dp"
+        android:layout_height="230dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:lottie_enableMergePathsForKitKatAndAbove="true"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/locationask" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
