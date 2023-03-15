@@ -18,7 +18,7 @@ class Utils {
 
         // Fonction pour sauvegarder les données
         fun saveConfig(context: Context) {
-            val sharedPreferences = context.getSharedPreferences("units", Context.MODE_PRIVATE)
+            val sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
             val editor = sharedPreferences.edit()
             editor.putString("units", units)
             editor.apply()
@@ -26,7 +26,7 @@ class Utils {
 
         // Fonction pour charger les données
         fun initConfig(context: Context): Boolean {
-            val sharedPreferences = context.getSharedPreferences("units", Context.MODE_PRIVATE)
+            val sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
             units = sharedPreferences.getString("units",null)
 
             if (units != null){
@@ -40,14 +40,14 @@ class Utils {
         }
 
         fun saveLocations(context: Context){
-            val sharedPreferences = context.getSharedPreferences("weathers", Context.MODE_PRIVATE)
+            val sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
             val editor = sharedPreferences.edit()
             editor.putString("weathers", Gson().toJson(weathers))
             editor.apply()
         }
 
         fun loadLocations(context: Context): MutableList<WeatherData>{
-            val sharedPreferences = context.getSharedPreferences("weathers", Context.MODE_PRIVATE)
+            val sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE)
             val gson = Gson()
             val json = sharedPreferences.getString("weathers", null)
             val listType: Type = object : TypeToken<MutableList<WeatherData>>() {}.type
