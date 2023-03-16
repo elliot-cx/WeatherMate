@@ -11,7 +11,6 @@ import android.os.Looper
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.elliot.weathermate.data.WeatherData
-import com.elliot.weathermate.views.setup.SetupActivity
 import com.google.android.gms.location.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

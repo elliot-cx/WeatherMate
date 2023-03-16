@@ -1,6 +1,5 @@
 package com.elliot.weathermate.data
 
-import android.content.Context
 import com.elliot.weathermate.Utils
 import retrofit2.Call
 import retrofit2.Retrofit

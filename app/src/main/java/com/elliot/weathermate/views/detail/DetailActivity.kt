@@ -9,7 +9,6 @@ import com.elliot.weathermate.Utils
 import com.elliot.weathermate.data.Weather
 import com.elliot.weathermate.data.WeatherData
 import kotlinx.android.synthetic.main.activity_detail.*
-import kotlinx.android.synthetic.main.activity_detail.view.*
 import kotlin.math.roundToInt
 
 class DetailActivity : AppCompatActivity() {
