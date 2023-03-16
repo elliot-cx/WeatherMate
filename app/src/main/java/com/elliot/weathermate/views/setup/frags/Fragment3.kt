@@ -1,5 +1,6 @@
 package com.elliot.weathermate.views.setup.frags
 
+import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -41,7 +42,7 @@ class Fragment3 : Fragment(){
             }
             setupActivity.permissionChanged = {
                 if (it){
-                    authoriseButton.text = R.string.next.toString()
+                    authoriseButton.text = Resources.getSystem().getString(R.string.next)
                     authoriseButton.setOnClickListener { _ ->
                         //initialiser l'application
                         setupActivity.setAnimationByName(animation,"locationsearch")

@@ -77,6 +77,7 @@ class MainActivity : AppCompatActivity(), WeatherAdapter.ItemClickListener {
 
     // Gère les clicks effectués sur les weather cards
     override fun onItemClick(view: View?, position: Int) {
+        editTextSearchCity.clearFocus()
         val item = Utils.weathers[position]
         val intent = Intent(this,DetailActivity::class.java)
         intent.putExtra("weather",item)

@@ -27,7 +27,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="0dp"
             android:text="@string/app_name"
-            android:textColor="@color/black"
             android:textSize="30sp"
             android:textStyle="bold"
             tools:ignore="RelativeOverlap" />
@@ -54,6 +53,7 @@
         android:drawableStart="@drawable/baseline_search_24"
         android:ems="10"
         android:hint="@string/search"
+        android:textColorHint="@color/black"
         android:inputType="textPersonName"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
