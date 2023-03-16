@@ -1,5 +1,7 @@
 package com.elliot.weathermate.data
 
+import android.content.Context
+import com.elliot.weathermate.Utils
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.Callback
@@ -44,7 +46,11 @@ object WeatherAPIService {
     }
 
     // Obtenir la météo ocurante via des coordonnées GPS
-    fun getWeatherByCoords(lat: Float,lon: Float,onResult: (WeatherData) -> Unit,onFail:(Throwable) ->Unit){
+    fun getWeatherByCoords(
+        lat: Float,
+        lon: Float,
+        onResult: (WeatherData) -> Unit,
+        onFail:(Throwable) ->Unit){
         weatherService.getWeather(lat,lon)
             .enqueue(object : Callback<WeatherData> {
                 override fun onResponse(call: Call<WeatherData>, response: Response<WeatherData>) {
@@ -54,5 +60,16 @@ object WeatherAPIService {
                     onFail(t)
                 }
             })
+    }
+
+    // Cette fonction met à jour les données météorologique d'une géolocalisation
+    fun updateWeather(weatherData: WeatherData,){
+        weatherData.let {
+            if (it.isGPS){
+                getWeatherByCoords(it.coord.lat,it.coord.lon,{
+
+                },{})
+            }
+        }
     }
 }

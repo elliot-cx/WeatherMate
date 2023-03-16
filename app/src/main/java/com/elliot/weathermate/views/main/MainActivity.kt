@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -13,10 +12,9 @@ import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.elliot.weathermate.R
 import com.elliot.weathermate.Utils
-import com.elliot.weathermate.data.Geocode
-import com.elliot.weathermate.data.GeocodingAPIService
-import com.elliot.weathermate.data.WeatherAPIService
+import com.elliot.weathermate.data.*
 import com.elliot.weathermate.views.detail.DetailActivity
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), WeatherAdapter.ItemClickListener {
@@ -33,19 +31,6 @@ class MainActivity : AppCompatActivity(), WeatherAdapter.ItemClickListener {
         adapter.setClickListener(this)
         recycleView.adapter = adapter
 
-        // Ajout manuel
-        arrayListOf("Paris","Villeurbanne","Toronto","Vienne","Lyon","Fosses").map {
-            WeatherAPIService.getWeather(
-                it,
-                {weather ->
-                    Utils.weathers.add(weather)
-                    adapter.notifyItemInserted(Utils.weathers.indexOf(weather))
-                },
-                {
-                    Toast.makeText(this,"Erreur de connexion", Toast.LENGTH_SHORT).show()
-                }
-            )
-        }
 
         // Autocomplétion de recherche de villes
         val autoCompleteHandler =  Handler(Looper.myLooper()!!)
@@ -88,30 +73,77 @@ class MainActivity : AppCompatActivity(), WeatherAdapter.ItemClickListener {
 
     }
 
-    override fun onResume() {
-        super.onResume()
-        this.adapter.notifyDataSetChanged()
-    }
-
     // Gère les clicks effectués sur les weather cards
     override fun onItemClick(view: View?, position: Int) {
         val item = Utils.weathers[position]
-
         val intent = Intent(this,DetailActivity::class.java)
         intent.putExtra("weather",item)
         startActivity(intent)
-
-
-        //WeatherAPIService.getWeather(
-        //    item.name,
-        //    {
-        //        Utils.weathers[position] = it
-        //        adapter.notifyItemChanged(position)
-        //    },
-        //    {
-
-        //    }
-        //)
     }
+
+
+    override fun onResume() {
+        super.onResume()
+        //TODO add delta time check before update
+        Snackbar.make(
+            this.layout,
+            "Mise à jours des données en cours...",
+            Snackbar.LENGTH_LONG
+        ).show()
+        // On met à jour toutes les informations
+        Utils.weathers.map { weather ->
+            if (weather.isGPS){
+                Utils.getLocation(this,this) { location ->
+                    val lat = location.latitude.toFloat()
+                    val lon = location.longitude.toFloat()
+                    WeatherAPIService.getWeatherByCoords(lat,lon,{
+                        weather.apply {
+                            this.name = it.name
+                            this.dt = it.dt
+                            this.clouds = it.clouds
+                            this.weather = it.weather
+                            this.weatherInfo = it.weatherInfo
+                            this.wind = it.wind
+                            this.coord = it.coord
+                        }
+                        adapter.notifyItemChanged(Utils.weathers.indexOf(weather))
+                        Utils.saveLocations(this)
+                    },{
+                        Snackbar.make(
+                            this.layout,
+                            "Certaines informations n'ont pas pu être mises à jorus !",
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    })
+                }
+            }else{
+                WeatherAPIService.getWeather(weather.name,{
+                    weather.apply {
+                        this.dt = it.dt
+                        this.clouds = it.clouds
+                        this.weather = it.weather
+                        this.weatherInfo = it.weatherInfo
+                        this.wind = it.wind
+                    }
+                    adapter.notifyItemChanged(Utils.weathers.indexOf(weather))
+                    Utils.saveLocations(this)
+                },{
+                    Snackbar.make(
+                        this.layout,
+                        "Certaines informations n'ont pas pu être mises à jorus !",
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                })
+            }
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        //TODO optimize location
+    }
+
+
+
 
 }

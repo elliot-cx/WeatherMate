@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.elliot.weathermate.R
+import com.elliot.weathermate.Utils
+import com.elliot.weathermate.data.WeatherAPIService
 import com.elliot.weathermate.views.setup.SetupActivity
 import kotlinx.android.synthetic.main.fragment3.*
 
@@ -21,15 +23,21 @@ class Fragment3 : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val setupActivity = activity as SetupActivity
-        authoriseButton.setOnClickListener{// locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-            if(setupActivity.requestLocationPermission()){
-
+        authoriseButton.setOnClickListener{ _ ->
+            if(Utils.requestLocationPermission(setupActivity.applicationContext,setupActivity)){
                 setupActivity.setAnimationByName(animation,"locationsearch")
-                setupActivity.getLocation {
-                    Log.i("TEST",it.toString())
+                Utils.getLocation(setupActivity.applicationContext, setupActivity) {
+                    Log.i("LOCATION",it.toString())
                     setupActivity.setAnimationByName(animation,"locationfound")
+                    WeatherAPIService.getWeatherByCoords(it.latitude.toFloat(),
+                        it.longitude.toFloat(),{ data ->
+                        data.isGPS = true
+                        Utils.weathers.add(data)
+                        setupActivity.finishConfig()
+                    },{
+                        // Vérifier la connexion internet / Réssayer
+                    })
                 }
             }
             setupActivity.permissionChanged = {
@@ -42,6 +50,4 @@ class Fragment3 : Fragment(){
             }
         }
     }
-
-
 }

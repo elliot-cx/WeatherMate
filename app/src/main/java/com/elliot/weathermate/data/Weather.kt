@@ -15,8 +15,8 @@ data class WeatherData(
     var clouds: Clouds,
     var dt: Long,
     var name: String,
-    val coord: Coord,
-    val isGPS: Boolean = false
+    var coord: Coord,
+    var isGPS: Boolean = false
 ) : Parcelable {
     override fun toString(): String {
         return """

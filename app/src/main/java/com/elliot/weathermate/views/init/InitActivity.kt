@@ -8,20 +8,16 @@ import com.elliot.weathermate.views.main.MainActivity
 import com.elliot.weathermate.views.setup.SetupActivity
 
 class InitActivity : AppCompatActivity() {
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //startActivity(Intent(this,MainActivity::class.java))
-        startActivity(Intent(this,SetupActivity::class.java))
-        // On regarde si l'application a été correctement paramétrée
-        this.finish()
-        return
         if(Utils.initConfig(applicationContext)){
+            // Initialisation des locations
+            Utils.loadLocations(this)
+            // Lancement de l'activitée principale
             startActivity(Intent(this,MainActivity::class.java))
         }else{
             startActivity(Intent(this,SetupActivity::class.java))
         }
+        this.finish()
     }
 }

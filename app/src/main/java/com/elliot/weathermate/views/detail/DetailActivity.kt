@@ -20,14 +20,17 @@ class DetailActivity : AppCompatActivity() {
             switch1.isChecked = true
         }
 
+        if(weatherDataInput!!.isGPS){
+            switch1.isEnabled = false
+        }
+
         switch1.setOnCheckedChangeListener{_,isChecked ->
             if (isChecked){
                 Utils.weathers.add(weatherDataInput!!)
             }else{
                 Utils.weathers.remove(weatherDataInput)
             }
+            Utils.saveLocations(this)
         }
-
-        Log.i("TEST", weatherDataInput.toString())
     }
 }
