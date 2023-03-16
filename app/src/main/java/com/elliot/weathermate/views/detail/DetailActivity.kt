@@ -26,7 +26,7 @@ class DetailActivity : AppCompatActivity() {
 
         switch1.setOnCheckedChangeListener{_,isChecked ->
             if (isChecked){
-                Utils.weathers.add(weatherDataInput!!)
+                Utils.weathers.add(weatherDataInput)
             }else{
                 Utils.weathers.remove(weatherDataInput)
             }

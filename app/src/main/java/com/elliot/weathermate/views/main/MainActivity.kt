@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -20,17 +21,19 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(), WeatherAdapter.ItemClickListener {
 
     lateinit var adapter: WeatherAdapter
+    var lastUpdateTime: Long = System.currentTimeMillis() - (2 * 60 * 1000)
+    lateinit var snackbarUpdate: Snackbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        snackbarUpdate = Snackbar.make(this.layout,"Erreur de connexion",Snackbar.LENGTH_LONG)
 
         // Initialisation de la RecyclerView
         recycleView.layoutManager = LinearLayoutManager(this)
         adapter = WeatherAdapter()
         adapter.setClickListener(this)
         recycleView.adapter = adapter
-
 
         // Autocomplétion de recherche de villes
         val autoCompleteHandler =  Handler(Looper.myLooper()!!)
@@ -50,17 +53,15 @@ class MainActivity : AppCompatActivity(), WeatherAdapter.ItemClickListener {
                             autoAdapter.filter.filter(editTextSearchCity.text, null);
                         },
                         {
-                            Toast.makeText(
-                                this@MainActivity,
-                                "Erreur de connexion",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            snackbarUpdate = Snackbar.make(this.layout,"Erreur de connexion",Snackbar.LENGTH_LONG)
+                            snackbarUpdate.show()
                         }
                     )
                 }
             },500)
         }
 
+        // Lorsque l'on clique sur une suggestion
         editTextSearchCity.setOnItemClickListener { _, _, position, _ ->
             val geocode = autoAdapter.getItem(position)
             WeatherAPIService.getWeather(geocode!!.name,{
@@ -84,66 +85,72 @@ class MainActivity : AppCompatActivity(), WeatherAdapter.ItemClickListener {
 
     override fun onResume() {
         super.onResume()
-        //TODO add delta time check before update
-        Snackbar.make(
-            this.layout,
-            "Mise à jours des données en cours...",
-            Snackbar.LENGTH_LONG
-        ).show()
-        // On met à jour toutes les informations
-        Utils.weathers.map { weather ->
-            if (weather.isGPS){
-                Utils.getLocation(this,this) { location ->
-                    val lat = location.latitude.toFloat()
-                    val lon = location.longitude.toFloat()
-                    WeatherAPIService.getWeatherByCoords(lat,lon,{
+        //TODO clean code
+        //On regarde si cela fait plus de 2 minutes que les informations ne sont pas à jour
+        val currentTime = System.currentTimeMillis()
+        if (currentTime > lastUpdateTime + (2 * 60 * 1000)){
+            lastUpdateTime = currentTime
+            snackbarUpdate = Snackbar.make(
+                this.layout,
+                "Mise à jours des données en cours...",
+                Snackbar.LENGTH_INDEFINITE
+            )
+            snackbarUpdate.show()
+            // On met à jour toutes les informations
+            Utils.weathers.map { weather ->
+                if (weather.isGPS){
+                    Utils.getLocation(this,this) { location ->
+                        val lat = location.latitude.toFloat()
+                        val lon = location.longitude.toFloat()
+                        WeatherAPIService.getWeatherByCoords(lat,lon,{
+                            weather.apply {
+                                this.name = it.name
+                                this.dt = it.dt
+                                this.clouds = it.clouds
+                                this.weather = it.weather
+                                this.weatherInfo = it.weatherInfo
+                                this.wind = it.wind
+                                this.coord = it.coord
+                            }
+                            adapter.notifyItemChanged(Utils.weathers.indexOf(weather))
+                            Utils.saveLocations(this)
+                            snackbarUpdate.dismiss()
+                        },{
+                            snackbarUpdate = Snackbar.make(
+                                this.layout,
+                                "Certaines informations n'ont pas pu être mises à jours !",
+                                Snackbar.LENGTH_LONG
+                            )
+                            snackbarUpdate.show()
+                        })
+                    }
+                }else{
+                    WeatherAPIService.getWeather(weather.name,{
                         weather.apply {
-                            this.name = it.name
                             this.dt = it.dt
                             this.clouds = it.clouds
                             this.weather = it.weather
                             this.weatherInfo = it.weatherInfo
                             this.wind = it.wind
-                            this.coord = it.coord
                         }
                         adapter.notifyItemChanged(Utils.weathers.indexOf(weather))
                         Utils.saveLocations(this)
                     },{
-                        Snackbar.make(
+                        snackbarUpdate = Snackbar.make(
                             this.layout,
-                            "Certaines informations n'ont pas pu être mises à jorus !",
+                            "Certaines informations n'ont pas pu être mises à jours !",
                             Snackbar.LENGTH_LONG
-                        ).show()
+                        )
+                        snackbarUpdate.show()
                     })
                 }
-            }else{
-                WeatherAPIService.getWeather(weather.name,{
-                    weather.apply {
-                        this.dt = it.dt
-                        this.clouds = it.clouds
-                        this.weather = it.weather
-                        this.weatherInfo = it.weatherInfo
-                        this.wind = it.wind
-                    }
-                    adapter.notifyItemChanged(Utils.weathers.indexOf(weather))
-                    Utils.saveLocations(this)
-                },{
-                    Snackbar.make(
-                        this.layout,
-                        "Certaines informations n'ont pas pu être mises à jorus !",
-                        Snackbar.LENGTH_LONG
-                    ).show()
-                })
             }
         }
     }
 
     override fun onPause() {
         super.onPause()
+        snackbarUpdate.dismiss()
         //TODO optimize location
     }
-
-
-
-
 }

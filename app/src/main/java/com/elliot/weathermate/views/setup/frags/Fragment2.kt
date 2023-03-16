@@ -24,8 +24,8 @@ class Fragment2 : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         buttonNext.setOnClickListener {
-            if(metricsButton.isSelected){
-                Utils.units = "metrics"
+            if(metricsButton.isChecked){
+                Utils.units = "metric"
             }
             else{
                 Utils.units = "imperial"
