@@ -116,8 +116,8 @@ class Utils {
                 val fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity)
                 val locationRequest = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 1000)
                     .setWaitForAccurateLocation(false)
-                    .setMinUpdateIntervalMillis(5000)
-                    .setMaxUpdateDelayMillis(5000)
+                    .setMinUpdateIntervalMillis(500)
+                    .setMaxUpdateDelayMillis(1000)
                     .build()
                 fusedLocationClient.requestLocationUpdates(locationRequest, object : LocationCallback() {
                     override fun onLocationResult(p0: LocationResult) {

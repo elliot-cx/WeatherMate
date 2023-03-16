@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity(), WeatherAdapter.ItemClickListener {
             val geocode = autoAdapter.getItem(position)
             WeatherAPIService.getWeather(geocode!!.name,{
                 editTextSearchCity.text.clear()
+                editTextSearchCity.clearFocus()
                 val intent = Intent(this,DetailActivity::class.java)
                 intent.putExtra("weather",it)
                 startActivity(intent)
@@ -85,6 +86,7 @@ class MainActivity : AppCompatActivity(), WeatherAdapter.ItemClickListener {
 
     override fun onResume() {
         super.onResume()
+        adapter.notifyDataSetChanged()
         //TODO clean code
         //On regarde si cela fait plus de 2 minutes que les informations ne sont pas à jour
         val currentTime = System.currentTimeMillis()
