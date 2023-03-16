@@ -28,7 +28,6 @@ class Fragment3 : Fragment(){
             if(Utils.requestLocationPermission(setupActivity.applicationContext,setupActivity)){
                 setupActivity.setAnimationByName(animation,"locationsearch")
                 Utils.getLocation(setupActivity.applicationContext, setupActivity) {
-                    Log.i("LOCATION",it.toString())
                     setupActivity.setAnimationByName(animation,"locationfound")
                     WeatherAPIService.getWeatherByCoords(it.latitude.toFloat(),
                         it.longitude.toFloat(),{ data ->
@@ -42,9 +41,21 @@ class Fragment3 : Fragment(){
             }
             setupActivity.permissionChanged = {
                 if (it){
-                    authoriseButton.text = "Suivant"
-                    authoriseButton.setOnClickListener {
+                    authoriseButton.text = R.string.next.toString()
+                    authoriseButton.setOnClickListener { _ ->
                         //initialiser l'application
+                        setupActivity.setAnimationByName(animation,"locationsearch")
+                        Utils.getLocation(setupActivity.applicationContext, setupActivity) { location ->
+                            setupActivity.setAnimationByName(animation,"locationfound")
+                            WeatherAPIService.getWeatherByCoords(location.latitude.toFloat(),
+                                location.longitude.toFloat(),{ data ->
+                                    data.isGPS = true
+                                    Utils.weathers.add(data)
+                                    setupActivity.finishConfig()
+                                },{
+                                    // Vérifier la connexion internet / Réssayer
+                                })
+                        }
                     }
                 }
             }

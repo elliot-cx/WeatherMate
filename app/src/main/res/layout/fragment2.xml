@@ -9,7 +9,7 @@
         android:id="@+id/textAnswer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quelles unités de mesure préférez vous ?"
+        android:text="@string/setup_units_message"
         android:textAlignment="center"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="100dp"
-        android:text="Suivant"
+        android:text="@string/next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -43,14 +43,14 @@
             android:id="@+id/metricsButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Celsius/kmh"
+            android:text="@string/celsius"
             android:checked="true"/>
 
         <RadioButton
             android:id="@+id/imperialButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Fahrenheit/Mph"/>
+            android:text="@string/fahrenheit"/>
 
     </RadioGroup>
 
@@ -60,7 +60,7 @@
         android:layout_height="230dp"
         android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_enableMergePathsForKitKatAndAbove="true"

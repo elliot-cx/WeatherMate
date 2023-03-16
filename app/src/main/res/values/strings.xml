@@ -2,4 +2,12 @@
     <string name="app_name">WeatherMate</string>
     <string name="search">Rechercher une ville</string>
     <string name="settings">Paramètres</string>
+    <string name="next">Suivant</string>
+    <string name="validate">Valider</string>
+    <string name="setup_message">Vous allez suivre quelques étapes pour configurer votre application</string>
+    <string name="welcome_message">Bienvenue sur WeatherMate</string>
+    <string name="setup_units_message">Quelles unités de mesure préférez vous ?</string>
+    <string name="celsius">Celsius/kmh</string>
+    <string name="fahrenheit">Fahrenheit/Mph</string>
+    <string name="setup_location_message">Nous avons besoin de la localisation du téléphone pour pouvoir continuer</string>
 </resources>

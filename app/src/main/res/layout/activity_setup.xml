@@ -9,13 +9,13 @@
     <com.tayfuncesur.stepper.Stepper
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:stepCount="4"
+        app:stepCount="3"
         android:id="@+id/stepper"
         tools:ignore="MissingConstraints">
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:background="#9c1461"
+            android:background="#124397"
             />
 
     </com.tayfuncesur.stepper.Stepper>
