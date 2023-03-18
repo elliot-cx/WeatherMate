@@ -35,6 +35,9 @@
         <activity
             android:name=".views.detail.DetailActivity"
             android:exported="true" />
+        <activity
+            android:name=".views.parameters.ParametersActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

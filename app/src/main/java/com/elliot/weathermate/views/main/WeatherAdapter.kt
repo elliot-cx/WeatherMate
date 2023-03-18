@@ -36,7 +36,9 @@ class WeatherAdapter() : RecyclerView.Adapter<WeatherAdapter.ViewHolder>() {
         val weather = weatherData.weather[0]
 
         holder.weather.text = weather.description
-        holder.temperature.text = "${weatherData.weatherInfo.temp.roundToInt()}°c"
+        var unitTemp = "C"
+        if (Utils.units == "imperial"){unitTemp = "F"}
+        holder.temperature.text = "${weatherData.weatherInfo.temp.roundToInt()}°${unitTemp}"
 
 
         val weatherName = weather.main.lowercase()
@@ -46,7 +48,7 @@ class WeatherAdapter() : RecyclerView.Adapter<WeatherAdapter.ViewHolder>() {
             "${weatherName}${weather.id}", "raw",
             BuildConfig.APPLICATION_ID)
 
-        // si la ressource n'est pas trouvée
+        // Si la ressource n'est pas trouvée
         if (res == 0){
             res = context.resources.getIdentifier(
                 weatherName, "raw",

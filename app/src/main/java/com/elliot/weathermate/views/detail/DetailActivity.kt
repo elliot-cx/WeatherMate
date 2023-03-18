@@ -23,8 +23,10 @@ class DetailActivity : AppCompatActivity() {
         val weather: Weather = weatherData!!.weather[0]
 
         // Mise à jour des données du layout
+        var unitTemp = "C"
+        if (Utils.units == "imperial"){unitTemp = "F"}
         city_name_text.text = weatherData!!.name
-        temp_text.text =  "${weatherData.weatherInfo.temp.roundToInt()}°c"
+        temp_text.text =  "${weatherData.weatherInfo.temp.roundToInt()}°${unitTemp}"
         weather_text.text = "${weather.description}"
         // changement dynamique de l'animation
         animationView.setAnimation(

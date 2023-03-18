@@ -10,4 +10,8 @@
     <string name="celsius">Celsius/kmh</string>
     <string name="fahrenheit">Fahrenheit/Mph</string>
     <string name="setup_location_message">Nous avons besoin de la localisation du téléphone pour pouvoir continuer</string>
+    <string name="parameters">Paramètres</string>
+    <string name="unit_asking">Unités de mesures</string>
+    <string name="synchro_google">Synchroniser la météo avec Google</string>
+    <string name="synchronize">Synchronisation</string>
 </resources>
