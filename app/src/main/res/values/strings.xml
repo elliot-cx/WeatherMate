@@ -3,6 +3,7 @@
     <string name="search">Rechercher une ville</string>
     <string name="settings">Paramètres</string>
     <string name="next">Suivant</string>
+    <string name="authorize">Autoriser</string>
     <string name="validate">Valider</string>
     <string name="setup_message">Vous allez suivre quelques étapes pour configurer votre application</string>
     <string name="welcome_message">Bienvenue sur WeatherMate</string>

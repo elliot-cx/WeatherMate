@@ -8,10 +8,12 @@
 
     <ImageView
         android:id="@+id/back_arrow"
-        android:layout_width="15dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
+        android:background="@drawable/button_background"
+        android:padding="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/baseline_arrow_back_24" />
@@ -27,19 +29,19 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/unitQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
         android:text="@string/unit_asking"
         android:textAlignment="center"
         android:textSize="25sp"
         android:textStyle="bold"
-        android:layout_marginTop="70dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/parametersTitle"
         tools:ignore="MissingConstraints" />
@@ -48,22 +50,22 @@
         android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/unitQuestion">
 
         <RadioButton
             android:id="@+id/metricsButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/celsius"/>
+            android:text="@string/celsius" />
 
         <RadioButton
             android:id="@+id/imperialButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/fahrenheit"/>
+            android:text="@string/fahrenheit" />
 
     </RadioGroup>
 
@@ -71,12 +73,12 @@
         android:id="@+id/googleQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:paddingHorizontal="20dp"
         android:text="@string/synchro_google"
         android:textAlignment="center"
         android:textSize="25sp"
         android:textStyle="bold"
-        android:layout_marginTop="40dp"
-        android:paddingHorizontal="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup"
@@ -86,24 +88,11 @@
         android:id="@+id/synchronize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
         android:text="@string/synchronize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/googleQuestion" />
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animation"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/synchronize"
-        app:lottie_autoPlay="true"
-        app:lottie_enableMergePathsForKitKatAndAbove="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/parameters2" />
+        app:layout_constraintTop_toBottomOf="@+id/googleQuestion"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

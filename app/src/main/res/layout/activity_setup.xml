@@ -15,8 +15,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:background="#124397"
-            />
+            android:background="#124397" />
 
     </com.tayfuncesur.stepper.Stepper>
 

@@ -35,8 +35,8 @@ class ParametersActivity  : AppCompatActivity() {
                 Utils.units = "imperial"
             }
             Utils.saveConfig(this)
-            // Changement d'activity
-            startActivity(Intent(this, MainActivity::class.java))
+
+            // Fermeture de l'activitée
             this.finish()
         }
     }

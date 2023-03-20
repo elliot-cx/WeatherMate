@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.elliot.weathermate.R
 import com.elliot.weathermate.Utils
@@ -16,7 +15,6 @@ import com.elliot.weathermate.data.*
 import com.elliot.weathermate.views.detail.DetailActivity
 import com.elliot.weathermate.views.parameters.ParametersActivity
 import com.google.android.material.snackbar.Snackbar
-import com.tayfuncesur.stepper.Stepper
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), WeatherAdapter.ItemClickListener {
@@ -34,7 +32,6 @@ class MainActivity : AppCompatActivity(), WeatherAdapter.ItemClickListener {
         // Accès à la page de paramètres
         imageButton.setOnClickListener {
             startActivity(Intent(this, ParametersActivity::class.java))
-            this.finish()
         }
 
         // Initialisation de la RecyclerView

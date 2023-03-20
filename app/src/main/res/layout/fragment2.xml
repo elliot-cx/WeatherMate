@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:text="@string/setup_units_message"
         android:textAlignment="center"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/radioGroup"
         app:layout_constraintEnd_toEndOf="parent"
