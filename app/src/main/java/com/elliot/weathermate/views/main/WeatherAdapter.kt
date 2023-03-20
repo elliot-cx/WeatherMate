@@ -28,12 +28,26 @@ class WeatherAdapter() : RecyclerView.Adapter<WeatherAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-
+        // Récupération des données
         val weatherData: WeatherData = Utils.weathers[position]
-
+        // Mise en place du nom
         holder.city.text = weatherData.name
         holder.city.isSelected = true
-
+        // On vérifie si il ne s'agit pas d'une météo en mode GPS
+        if (weatherData.isGPS){
+            holder.city.setCompoundDrawablesWithIntrinsicBounds(
+                R.drawable.baseline_location_on_24,
+                0,
+                0,
+                0)
+        }else{
+            holder.city.setCompoundDrawablesWithIntrinsicBounds(
+                0,
+                0,
+                0,
+                0)
+        }
+        // On récupère le temps de la météo pour pouvoir y accéder plus rapidement
         val weather = weatherData.weather[0]
 
         holder.weather.text = weather.description
@@ -41,21 +55,18 @@ class WeatherAdapter() : RecyclerView.Adapter<WeatherAdapter.ViewHolder>() {
         if (Utils.units == "imperial"){unitTemp = "F"}
         holder.temperature.text = "${weatherData.weatherInfo.temp.roundToInt()}°${unitTemp}"
 
-
         val weatherName = weather.main.lowercase()
-
         // Mise en place de l'animation en fonction du temps
         var res = context.resources.getIdentifier(
             "${weatherName}${weather.id}", "raw",
             BuildConfig.APPLICATION_ID)
-
         // Si la ressource n'est pas trouvée
         if (res == 0){
             res = context.resources.getIdentifier(
                 weatherName, "raw",
                 BuildConfig.APPLICATION_ID)
         }
-
+        // On configure l'animation
         holder.animation.let {
             it.setAnimation(res)
             it.playAnimation()
