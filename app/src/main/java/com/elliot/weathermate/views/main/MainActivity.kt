@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity(), WeatherAdapter.ItemClickListener {
         // Lorsque l'on clique sur une suggestion
         editTextSearchCity.setOnItemClickListener { _, _, position, _ ->
             val geocode = autoAdapter.getItem(position)
-            WeatherAPIService.getWeather(geocode!!.name,{
+            WeatherAPIService.getWeatherByCoords(geocode!!.lat, geocode.lon,{
                 editTextSearchCity.text.clear()
                 editTextSearchCity.clearFocus()
                 val intent = Intent(this,DetailActivity::class.java)

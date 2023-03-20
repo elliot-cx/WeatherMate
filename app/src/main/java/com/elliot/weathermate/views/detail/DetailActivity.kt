@@ -9,6 +9,7 @@ import com.elliot.weathermate.Utils
 import com.elliot.weathermate.data.Weather
 import com.elliot.weathermate.data.WeatherData
 import kotlinx.android.synthetic.main.activity_detail.*
+import java.util.*
 import kotlin.math.roundToInt
 
 class DetailActivity : AppCompatActivity() {
@@ -25,9 +26,10 @@ class DetailActivity : AppCompatActivity() {
         // Mise à jour des données du layout
         var unitTemp = "C"
         if (Utils.units == "imperial"){unitTemp = "F"}
-        city_name_text.text = weatherData!!.name
+        city_name_text.text = weatherData.name
+        time_text.text = "${ Date(weatherData.dt * 1000) }"
         temp_text.text =  "${weatherData.weatherInfo.temp.roundToInt()}°${unitTemp}"
-        weather_text.text = "${weather.description}"
+        weather_text.text = weather.description
         // changement dynamique de l'animation
         animationView.setAnimation(
             resources.getIdentifier(
