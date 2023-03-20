@@ -47,6 +47,8 @@
         <activity
             android:name=".views.parameters.ParametersActivity"
             android:exported="true" />
+        <activity android:name=".views.map.MapActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>
