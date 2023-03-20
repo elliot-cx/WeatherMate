@@ -13,17 +13,17 @@ import com.google.android.gms.maps.model.MarkerOptions
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback{
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_map)
 
-        // Attache du fragment
+        // Get a handle to the fragment and register the callback.
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment!!.getMapAsync(this)
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
-        //Ajoute un marqueur au point 0.0, 0.0
+        // Ajoute un marqueur en 0.0, 0.0
         googleMap.addMarker(
             MarkerOptions()
                 .position(LatLng(0.0, 0.0))
