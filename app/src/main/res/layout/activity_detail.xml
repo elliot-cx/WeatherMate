@@ -101,7 +101,7 @@
 
                 <ImageView
                     android:id="@+id/windOrientation"
-                    android:contentDescription="direction du vent"
+                    android:contentDescription="@string/wind_direction"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:rotation="-180"
