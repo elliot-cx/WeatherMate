@@ -64,26 +64,32 @@ class Utils {
 
         fun choseWeatherBackground(weather: String): IntArray {
             when(weather){
+                "thunderstorm"-> return intArrayOf(
+                    Color.rgb(48, 207, 208),
+                    Color.rgb(51, 8, 103))
                 "rain" -> return intArrayOf(
                     Color.rgb(102, 124, 144),
                     Color.rgb(67, 88, 116))
                 "clear" -> return intArrayOf(
-                    Color.rgb(33, 212, 253),
-                    Color.rgb(183, 33, 255))
+                    //Color.rgb(33, 212, 253),
+                    //Color.rgb(183, 33, 255))
+                    Color.rgb(48, 207, 208),
+                    Color.rgb(51, 8, 103))
                 "snow" -> return intArrayOf(
                     Color.rgb(105, 179, 250),
                     Color.rgb(52, 124, 227))
                 "clouds" -> return intArrayOf(
                     //Color.rgb(207, 217, 223),
                     //Color.rgb(226, 235, 240))
-                    Color.rgb(102, 124, 144),
-                    Color.rgb(67, 88, 116))
+                    Color.rgb(106, 133, 182),
+                    Color.rgb(186, 200, 224))
                 "mist" -> return intArrayOf(
                     Color.rgb(132, 146, 156),
                     Color.rgb(151, 157, 161))
                 else -> return intArrayOf(
                     Color.rgb(102, 124, 144),
                     Color.rgb(67, 88, 116))
+
             }
         }
 
