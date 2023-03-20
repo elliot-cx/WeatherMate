@@ -35,7 +35,6 @@ object WeatherAPIService {
     fun getWeather(city: String,onResult: (WeatherData) -> Unit,onFail:(Throwable) ->Unit){
         weatherService.getWeather(city)
             .enqueue(object : Callback<WeatherData> {
-                //TODO Fix when not found
                 override fun onResponse(call: Call<WeatherData>, response: Response<WeatherData>) {
                     onResult(response.body()!!)
                 }
@@ -60,16 +59,5 @@ object WeatherAPIService {
                     onFail(t)
                 }
             })
-    }
-
-    // Cette fonction met à jour les données météorologique d'une géolocalisation
-    fun updateWeather(weatherData: WeatherData,){
-        weatherData.let {
-            if (it.isGPS){
-                getWeatherByCoords(it.coord.lat,it.coord.lon,{
-
-                },{})
-            }
-        }
     }
 }

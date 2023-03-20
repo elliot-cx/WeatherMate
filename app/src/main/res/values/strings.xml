@@ -15,4 +15,6 @@
     <string name="unit_asking">Unités de mesures</string>
     <string name="synchro_google">Synchroniser la météo avec Google</string>
     <string name="synchronize">Synchronisation</string>
+    <string name="wind_direction">Direction du vent</string>
+    <string name="back">Retour arrière</string>
 </resources>

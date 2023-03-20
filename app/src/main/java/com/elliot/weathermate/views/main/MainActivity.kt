@@ -48,14 +48,14 @@ class MainActivity : AppCompatActivity(), WeatherAdapter.ItemClickListener {
 
         editTextSearchCity.addTextChangedListener{
             autoCompleteHandler.removeMessages(0)
-            autoCompleteHandler.postDelayed( Runnable{
+            autoCompleteHandler.postDelayed({
                 if (editTextSearchCity.text.length > 1){
                     GeocodingAPIService.getGeocodes(
                         editTextSearchCity.text.toString(),
                         {
                             autoAdapter.clear()
                             autoAdapter.addAll(it)
-                            autoAdapter.filter.filter(editTextSearchCity.text, null);
+                            autoAdapter.filter.filter(editTextSearchCity.text, null)
                         },
                         {
                             snackbarUpdate = Snackbar.make(this.layout,"Erreur de connexion",Snackbar.LENGTH_LONG)
