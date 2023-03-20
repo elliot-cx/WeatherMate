@@ -17,4 +17,5 @@
     <string name="synchronize">Synchronisation</string>
     <string name="wind_direction">Direction du vent</string>
     <string name="back">Retour arrière</string>
+    <string name="map">Carte du monde</string>
 </resources>

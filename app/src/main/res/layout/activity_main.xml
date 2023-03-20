@@ -32,7 +32,7 @@
             tools:ignore="RelativeOverlap" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/settingsButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
@@ -48,18 +48,30 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:autofillHints="city"
         android:background="@drawable/input_background"
         android:drawableStart="@drawable/baseline_search_24"
         android:ems="10"
         android:hint="@string/search"
-        android:textColorHint="@color/black"
         android:inputType="textPersonName"
         android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/mapButton"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+    <ImageButton
+        android:id="@+id/mapButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_background"
+        android:contentDescription="@string/map"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:srcCompat="@drawable/baseline_map_24" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleView"

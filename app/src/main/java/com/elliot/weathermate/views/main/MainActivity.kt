@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), WeatherAdapter.ItemClickListener {
         snackbarUpdate = Snackbar.make(this.layout,"Erreur de connexion",Snackbar.LENGTH_LONG)
 
         // Accès à la page de paramètres
-        imageButton.setOnClickListener {
+        settingsButton.setOnClickListener {
             startActivity(Intent(this, ParametersActivity::class.java))
         }
 
