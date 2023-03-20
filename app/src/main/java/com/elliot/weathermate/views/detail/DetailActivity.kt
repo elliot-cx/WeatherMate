@@ -27,7 +27,7 @@ class DetailActivity : AppCompatActivity() {
         var unitTemp = "C"
         if (Utils.units == "imperial"){unitTemp = "F"}
         city_name_text.text = weatherData.name
-        time_text.text = "${ Date(weatherData.dt * 1000) }"
+        time_text.text = Utils.formatDate(Date(weatherData.dt * 1000))
         temp_text.text =  "${weatherData.weatherInfo.temp.roundToInt()}°${unitTemp}"
         weather_text.text = weather.description
         // changement dynamique de l'animation

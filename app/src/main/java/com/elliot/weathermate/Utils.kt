@@ -15,6 +15,8 @@ import com.google.android.gms.location.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
+import java.text.SimpleDateFormat
+import java.util.*
 
 class Utils {
 
@@ -138,8 +140,15 @@ class Utils {
                     }
                 }, Looper.getMainLooper())
             }else{
-                // TODO
+                // TODO demander la permission
             }
+        }
+
+        // Formatage des date
+        fun formatDate(date: Date): String {
+            val dayFormat = SimpleDateFormat("EEEE dd MMMM", Locale.getDefault())
+            val timeFormat = SimpleDateFormat("HH'h'mm", Locale.getDefault())
+            return "${dayFormat.format(date)} à ${timeFormat.format(date)}"
         }
     }
 }

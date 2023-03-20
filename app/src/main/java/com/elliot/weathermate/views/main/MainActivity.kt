@@ -94,9 +94,9 @@ class MainActivity : AppCompatActivity(), WeatherAdapter.ItemClickListener {
         super.onResume()
         adapter.notifyDataSetChanged()
         //TODO clean code
-        //On regarde si cela fait plus de 2 minutes que les informations ne sont pas à jour
+        //On regarde si cela fait plus de 5 minutes que les informations n'ont pas été mises à jours
         val currentTime = System.currentTimeMillis()
-        if (currentTime > lastUpdateTime + (2 * 60 * 1000)){
+        if (currentTime > lastUpdateTime + (5 * 60 * 1000)){
             lastUpdateTime = currentTime
             snackbarUpdate = Snackbar.make(
                 this.layout,
@@ -106,6 +106,7 @@ class MainActivity : AppCompatActivity(), WeatherAdapter.ItemClickListener {
             snackbarUpdate.show()
             // On met à jour toutes les informations
             Utils.weathers.map { weather ->
+                // On vérifie si il faut récupérer la position GPS
                 if (weather.isGPS){
                     Utils.getLocation(this,this) { location ->
                         val lat = location.latitude.toFloat()
@@ -159,6 +160,5 @@ class MainActivity : AppCompatActivity(), WeatherAdapter.ItemClickListener {
     override fun onPause() {
         super.onPause()
         snackbarUpdate.dismiss()
-        //TODO optimize location
     }
 }
