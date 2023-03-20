@@ -70,8 +70,9 @@ class Utils {
                     Color.rgb(48, 207, 208),
                     Color.rgb(51, 8, 103))
                 "rain" -> return intArrayOf(
-                    Color.rgb(102, 124, 144),
-                    Color.rgb(67, 88, 116))
+                    Color.rgb(78, 133, 230),
+                    Color.rgb(56, 101, 181),
+                    Color.rgb(26, 60, 122))
                 "clear" -> return intArrayOf(
                     //Color.rgb(33, 212, 253),
                     //Color.rgb(183, 33, 255))
@@ -85,9 +86,6 @@ class Utils {
                     //Color.rgb(226, 235, 240))
                     Color.rgb(106, 133, 182),
                     Color.rgb(186, 200, 224))
-                "drizzle" -> return intArrayOf(
-                    Color.rgb(105, 145, 199),
-                    Color.rgb(163, 189, 237))
                 "mist" -> return intArrayOf(
                     Color.rgb(132, 146, 156),
                     Color.rgb(151, 157, 161))
