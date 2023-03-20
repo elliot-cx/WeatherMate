@@ -1,11 +1,13 @@
 package com.elliot.weathermate.views.main
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.widget.ArrayAdapter
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +15,7 @@ import com.elliot.weathermate.R
 import com.elliot.weathermate.Utils
 import com.elliot.weathermate.data.*
 import com.elliot.weathermate.views.detail.DetailActivity
+import com.elliot.weathermate.views.map.MapActivity
 import com.elliot.weathermate.views.parameters.ParametersActivity
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
@@ -76,6 +79,18 @@ class MainActivity : AppCompatActivity(), WeatherAdapter.ItemClickListener {
                 intent.putExtra("weather",it)
                 startActivity(intent)
             },{})
+        }
+
+        val registerActivity = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result->
+            if (result.resultCode == Activity.RESULT_OK){
+
+            }
+        }
+
+        mapButton.setOnClickListener{
+            val intent = Intent(this, MapActivity::class.java)
+            intent.putExtra("startMap","Starting MapActivity")
+            registerActivity.launch(intent)
         }
 
     }
