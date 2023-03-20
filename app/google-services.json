@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "211870501883",
+    "project_id": "weathermateapplication",
+    "storage_bucket": "weathermateapplication.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:211870501883:android:f687fd701089d724fd195e",
+        "android_client_info": {
+          "package_name": "com.elliot.weathermate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "211870501883-l0lom866jst5kho9ckl83t5hmlikld07.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsnodhRWBZ77-Cb_yBHvhLZOtcZJdsfG4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "211870501883-cvg5a3k1u819e6avt2va7dltoft0kj4s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
