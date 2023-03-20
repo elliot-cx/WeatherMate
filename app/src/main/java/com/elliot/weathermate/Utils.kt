@@ -74,8 +74,13 @@ class Utils {
                     Color.rgb(105, 179, 250),
                     Color.rgb(52, 124, 227))
                 "clouds" -> return intArrayOf(
+                    //Color.rgb(207, 217, 223),
+                    //Color.rgb(226, 235, 240))
                     Color.rgb(102, 124, 144),
                     Color.rgb(67, 88, 116))
+                "mist" -> return intArrayOf(
+                    Color.rgb(132, 146, 156),
+                    Color.rgb(151, 157, 161))
                 else -> return intArrayOf(
                     Color.rgb(102, 124, 144),
                     Color.rgb(67, 88, 116))
