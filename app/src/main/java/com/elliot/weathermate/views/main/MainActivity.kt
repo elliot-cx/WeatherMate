@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(), WeatherAdapter.ItemClickListener {
 
     lateinit var adapter: WeatherAdapter
-    var lastUpdateTime: Long = System.currentTimeMillis() - (2 * 60 * 1000)
+    var lastUpdateTime: Long = System.currentTimeMillis() - (5 * 60 * 1000)
     lateinit var snackbarUpdate: Snackbar
 
     override fun onCreate(savedInstanceState: Bundle?) {

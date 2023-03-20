@@ -41,9 +41,10 @@ class DetailActivity : AppCompatActivity() {
 
         var unitText = "m/s"
         if (Utils.units == "imperial"){unitText = "mph"}
-        windSpeed.text = "${weatherData.wind.speed} ${unitText}"
+        windSpeed.text = "${weatherData.wind.speed}${unitText}"
         windOrientation.rotation = weatherData.wind.deg + 180
         humidity_text.text = "${weatherData.weatherInfo.humidity}%"
+        pressure_text.text = "${weatherData.weatherInfo.pressure}hPa"
 
         // Mise en place du background en fonction du temps
         val backgroundDrawable =  this.gradient_background.background as GradientDrawable
@@ -59,7 +60,6 @@ class DetailActivity : AppCompatActivity() {
         }
 
         // Bonton Favoris
-
         if (weatherData.isGPS){
             favoriteButton.visibility = View.GONE
         }

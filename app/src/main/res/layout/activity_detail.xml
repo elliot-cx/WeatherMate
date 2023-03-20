@@ -38,6 +38,7 @@
         android:id="@+id/weather_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text=""
         android:textColor="@color/white"
         android:textSize="16sp"
@@ -51,6 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="65dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
         android:text=""
         android:textColor="@color/white"
         android:textSize="50sp"
@@ -63,86 +65,122 @@
         android:id="@+id/animationView"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time_text"
-        app:lottie_enableMergePathsForKitKatAndAbove="true"
         app:lottie_autoPlay="true"
+        app:lottie_enableMergePathsForKitKatAndAbove="true"
         app:lottie_loop="true" />
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        app:cardBackgroundColor="#80A3A6A8"
+        android:layout_marginBottom="48dp"
+        app:cardBackgroundColor="#4D333333"
         app:cardCornerRadius="25dp"
         app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weather_text"
         app:strokeWidth="0dp">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="@drawable/vertical_divider"
-            android:dividerPadding="20dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:showDividers="middle">
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <ImageView
+                android:id="@+id/windOrientation"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                android:contentDescription="@string/wind_direction"
+                android:rotation="-180"
+                android:src="@drawable/baseline_navigation_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.55" />
+
+            <TextView
+                android:id="@+id/windSpeed"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:text="3.5m/s"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/windOrientation"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.6" />
 
-                <ImageView
-                    android:id="@+id/windOrientation"
-                    android:contentDescription="@string/wind_direction"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:rotation="-180"
-                    android:src="@drawable/baseline_navigation_24"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/windSpeed"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/humidity_text"
+                android:layout_width="100dp"
+                android:layout_height="33dp"
+                android:text="100%"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/pressure_text"
+                app:layout_constraintHorizontal_bias="0.333"
+                app:layout_constraintStart_toEndOf="@+id/windSpeed"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.6" />
 
-                <TextView
-                    android:id="@+id/windSpeed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text=""
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/windOrientation"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/pressure_text"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:text="1204hPa"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.6" />
 
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <TextView
+                android:id="@+id/windTitle"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="8dp"
+                android:text="Vent"
+                android:textColor="#E3E3E3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/humidity_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
+            <TextView
+                android:id="@+id/humidityTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Humidité"
+                android:textColor="#E3E3E3"
+                app:layout_constraintEnd_toStartOf="@+id/pressureTitle"
+                app:layout_constraintStart_toEndOf="@+id/windTitle"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/pressureTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="48dp"
+                android:text="Pression"
+                android:textColor="#E3E3E3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
     <ImageView
