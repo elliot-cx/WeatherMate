@@ -26,8 +26,13 @@
 
             <TextView
                 android:id="@+id/city"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="34dp"
+                android:ellipsize="marquee"
+                android:textIsSelectable="false"
+                android:fadingEdge="horizontal"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"
                 android:text="Paris"
                 android:textColor="@color/white"
                 android:textSize="24sp"
@@ -35,12 +40,12 @@
 
             <TextView
                 android:id="@+id/weather"
-                android:layout_width="240dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Ciel dégagé"
-                android:textSize="13sp"
                 android:textColor="@color/white"
-                android:textFontWeight="100" />
+                android:textFontWeight="100"
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/temperature"

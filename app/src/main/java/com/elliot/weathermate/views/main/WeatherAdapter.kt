@@ -32,6 +32,7 @@ class WeatherAdapter() : RecyclerView.Adapter<WeatherAdapter.ViewHolder>() {
         val weatherData: WeatherData = Utils.weathers[position]
 
         holder.city.text = weatherData.name
+        holder.city.isSelected = true
 
         val weather = weatherData.weather[0]
 
